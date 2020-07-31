@@ -28,4 +28,9 @@ export class HomePage implements OnInit
   {
     this.wsActions.getExampleData();
   }
+
+  getTests()
+  {
+    this.wsActions.getTestData();
+  }
 }
