@@ -20,7 +20,7 @@ const wsProvidersInjector = Injector.create({ providers: [
 const examplesProvider = wsProvidersInjector.get(ExamplesProvider);
 
 //Thunks
-export const retrieveExamplesThunk = prepareThunk('ws', 'retrieveExamples', examplesProvider.retrieveExamples);
+export const getExampleDataThunk = prepareThunk('ws', 'getExampleData', examplesProvider.getExampleData);
 //Ws thunks: PLEASE DON'T DELETE THIS PLACEHOLDER
 
 //Ws actions and reducers
@@ -33,7 +33,7 @@ const wsSlice = createSlice({
         }
     },
     extraReducers: prepareThunkActionReducers([
-		{ thunk: retrieveExamplesThunk, substate: 'example', adapter: null },
+		{ thunk: getExampleDataThunk, substate: 'example', adapter: null },
         //Ws prepare thunks: PLEASE DON'T DELETE THIS PLACEHOLDER
     ])
 });

@@ -1,6 +1,6 @@
 import { createStoredReducer } from '@redux-multipurpose/core';
 
-import { wsReducer } from './ws/ws.reducer.ts';
+import { wsReducer } from './ws/ws.slice';
 
 export function rootReducer(storage)
 {

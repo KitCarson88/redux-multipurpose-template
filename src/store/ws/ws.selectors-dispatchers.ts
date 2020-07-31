@@ -4,7 +4,7 @@ import { dispatch } from '@redux-multipurpose/core';
 import { createSelector } from '@reduxjs/toolkit';
 
 import {
-    retrieveExamplesThunk,
+    getExampleDataThunk,
 	//Thunks imports: PLEASE DON'T DELETE THIS PLACEHOLDER
 } from './ws.slice';
 //Adapters imports: PLEASE DON'T DELETE THIS PLACEHOLDER
@@ -14,8 +14,8 @@ import {
 export class WsActions
 {
     @dispatch()
-    retrieveExamples = () => {
-        retrieveExamplesThunk();
+    getExampleData = () => {
+        getExampleDataThunk();
     };
 
     //Actions: PLEASE DON'T DELETE THIS PLACEHOLDER

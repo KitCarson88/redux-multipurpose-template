@@ -8,7 +8,7 @@ export class ExamplesProvider
 {
     constructor() {}
 
-    retrieveExamples()
+    getExampleData()
     {
         //Provide here your call to data retrieve, replacing following example empty promise
         
