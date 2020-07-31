@@ -7,5 +7,20 @@
 </ion-header>
 
 <ion-content>
-  
+  <ion-spinner *ngIf="examplesLoading$ | async; else callEnded"></ion-spinner>
+  <ng-template #callEnded>
+    <ion-label *ngIf="examplesError$ | async; else exampleData">An error occured during example data retrieve</ion-label>
+
+    <ng-template #exampleData>
+      <ion-list>
+        <ion-item *ngFor="let example of examples$ | async">
+          <ion-label>
+            <div>{{example.title}}</div>
+            <div>{{example.subtitle}}</div>
+            <div>{{example.date | date: 'dd/MM/yyyy'}}</div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-template>
+  </ng-template>
 </ion-content>
