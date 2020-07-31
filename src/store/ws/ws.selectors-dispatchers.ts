@@ -15,7 +15,7 @@ export class WsActions
 {
     @dispatch()
     getExampleData = () => {
-        getExampleDataThunk();
+        return getExampleDataThunk();
     };
 
     //Actions: PLEASE DON'T DELETE THIS PLACEHOLDER

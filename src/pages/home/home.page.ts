@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { WsActions } from '../../store';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit
+{
+  constructor(private wsActions: WsActions) {}
 
-  constructor() {}
-
+  ngOnInit()
+  {
+    this.wsActions.getExampleData();
+  }
 }
