@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs';
 import { select } from '@redux-multipurpose/core';
 
-import { WsActions } from '../../store';
-import { Observable } from 'rxjs';
+import { WsActions, testDataArray } from '../../store';
+
 import { ExampleDTO } from '../../entities/dto/exampleDTO';
+import { TestDataDTO } from '../../entities/dto/testDataDTO';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +23,16 @@ export class HomePage implements OnInit
 
   @select(["ws", "example", "error"])
   examplesError$: Observable<any>;
+
+
+  @select(testDataArray)
+  testData$: Observable<TestDataDTO[]>;
+
+  @select(["ws", "testData", "loading"])
+  testDataLoading$: Observable<boolean>;
+
+  @select(["ws", "testData", "error"])
+  testDataError$: Observable<any>;
 
   constructor(private wsActions: WsActions) {}
 

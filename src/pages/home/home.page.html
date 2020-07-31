@@ -8,8 +8,8 @@
 
 <ion-content>
   <div class="infoContainer">
-    <ion-spinner *ngIf="examplesLoading$ | async; else callEnded"></ion-spinner>
-    <ng-template #callEnded>
+    <ion-spinner *ngIf="examplesLoading$ | async; else examplesCallEnded"></ion-spinner>
+    <ng-template #examplesCallEnded>
       <ion-label *ngIf="examplesError$ | async; else exampleData">An error occured during example data retrieve</ion-label>
 
       <ng-template #exampleData>
@@ -31,17 +31,16 @@
   </div>
 
   <div class="infoContainer">
-    <ion-spinner *ngIf="examplesLoading$ | async; else callEnded"></ion-spinner>
-    <ng-template #callEnded>
-      <ion-label *ngIf="examplesError$ | async; else exampleData">An error occured during example data retrieve</ion-label>
+    <ion-spinner *ngIf="testDataLoading$ | async; else testCallEnded"></ion-spinner>
+    <ng-template #testCallEnded>
+      <ion-label *ngIf="testDataError$ | async; else testData">An error occured during test data retrieve</ion-label>
   
-      <ng-template #exampleData>
+      <ng-template #testData>
         <ion-list>
-          <ion-item *ngFor="let example of examples$ | async">
+          <ion-item *ngFor="let test of testData$ | async">
             <ion-label>
-              <div>{{example.title}}</div>
-              <div>{{example.subtitle}}</div>
-              <div>{{example.date | date: 'dd/MM/yyyy'}}</div>
+              <div>{{test.title}}</div>
+              <div>{{test.date | date: 'dd/MM/yyyy'}}</div>
             </ion-label>
           </ion-item>
         </ion-list>
