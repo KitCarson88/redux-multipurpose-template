@@ -1,9 +1,11 @@
-import { createStoredReducer } from '@redux-multipurpose/core';
+import { createStoredReducer, createSecureStoredReducer } from '@redux-multipurpose/core';
 
 import { wsReducer } from './ws/ws.slice';
 
 export function rootReducer(storage)
 {
+  //Persisted reducers: PLEASE DON'T DELETE THIS PLACEHOLDER
+  
   return {
 		ws: wsReducer,
     //Reducers: PLEASE DON'T DELETE THIS PLACEHOLDER
