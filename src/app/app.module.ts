@@ -10,10 +10,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+//Components
+import { SplashModule } from '../components/splash/splash.module';
+
 //Services
 import { ServiceLocator } from '../services/locator.service';
 
-import { StoreModule } from 'src/store/store.module';
+//Store
+import { StoreModule } from '../store/store.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +29,7 @@ imports:[
       mode: 'md'
     }),
     StoreModule,
+    SplashModule,
 		AppRoutingModule
 	],
   providers: [

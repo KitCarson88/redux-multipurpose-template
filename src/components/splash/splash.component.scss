@@ -1,0 +1,32 @@
+@mixin transition($transition...) {
+    -webkit-transition: $transition !important;
+    -moz-transition: $transition !important;
+    -ms-transition: $transition !important;
+    -o-transition: $transition !important;
+    transition: $transition !important;
+  }
+
+ion-content {
+    width: 100%;
+    height: 100%;
+    z-index: 10000000;
+    opacity: 1;
+    @include transition(opacity .5s linear);
+
+    &.fadeOut {
+        opacity: 0;
+    }
+}
+
+.splashContainer {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    @include transition(opacity .3s linear);
+
+    &.fadeIn {
+        opacity: 1;
+    }
+}

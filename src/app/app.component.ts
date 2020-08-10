@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+
+import { Observable } from 'rxjs';
+
+import { ReducerInjector, select } from '@redux-multipurpose/core';
+
+import { splashReducer } from '../store/splash/splash.slice';
+
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -9,7 +15,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+@ReducerInjector([{
+	key: 'splash',
+	reducer: splashReducer
+}])
+export class AppComponent implements OnInit
+{
+  @select(["splash"])
+  splashState$: Observable<string>;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -17,6 +31,8 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
+
+  ngOnInit() {}
 
   initializeApp() {
     this.platform.ready().then(() => {
