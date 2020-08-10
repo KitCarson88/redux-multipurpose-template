@@ -5,11 +5,13 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import {
     getExampleDataThunk,
-	getTestDataThunk,
-	//Thunks imports: PLEASE DON'T DELETE THIS PLACEHOLDER
+	getTestDataThunk
 } from './ws.slice';
-import { testDataAdapter } from './ws.model';
-//Adapters imports: PLEASE DON'T DELETE THIS PLACEHOLDER
+
+import {
+	testDataAdapter
+} from './ws.model';
+
 
 export const testData = state => state.ws.testData.data;
 const testDataSelectors = testDataAdapter.getSelectors();
@@ -29,7 +31,6 @@ export const testDataCount =
         [testData],
         (items) => items? testDataSelectors.selectTotal(items) : null
     );
-//Selectors: PLEASE DON'T DELETE THIS PLACEHOLDER
 
 @Injectable()
 export class WsActions
@@ -38,11 +39,10 @@ export class WsActions
     getExampleData = () => {
         return getExampleDataThunk();
     };
-
+    
     @dispatch()
     getTestData = () => {
         return getTestDataThunk();
     };
-
-    //Actions: PLEASE DON'T DELETE THIS PLACEHOLDER
+    
 }

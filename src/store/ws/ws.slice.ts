@@ -9,21 +9,18 @@ import {
 } from './ws.model';
 
 import {
-	ExamplesProvider
+    ExamplesProvider
 } from '../../providers';
-//Ws providers imports: PLEASE DON'T DELETE THIS PLACEHOLDER
 
 //Manually inject providers
 const wsProvidersInjector = Injector.create({ providers: [
-	{ provide: ExamplesProvider },
-    //Ws providers: PLEASE DON'T DELETE THIS PLACEHOLDER
+    { provide: ExamplesProvider }
 ]});
 const examplesProvider = wsProvidersInjector.get(ExamplesProvider);
 
 //Thunks
 export const getExampleDataThunk = prepareThunk('ws', 'getExampleData', examplesProvider.getExampleData);
 export const getTestDataThunk = prepareThunk('ws', 'getTestData', examplesProvider.getTestData);
-//Ws thunks: PLEASE DON'T DELETE THIS PLACEHOLDER
 
 //Ws actions and reducers
 const wsSlice = createSlice({
@@ -35,9 +32,8 @@ const wsSlice = createSlice({
         }
     },
     extraReducers: prepareThunkActionReducers([
-		{ thunk: getExampleDataThunk, substate: 'example', adapter: null },
-		{ thunk: getTestDataThunk, substate: 'testData', adapter: testDataAdapter },
-        //Ws prepare thunks: PLEASE DON'T DELETE THIS PLACEHOLDER
+        { thunk: getExampleDataThunk, substate: 'example', adapter: null },
+        { thunk: getTestDataThunk, substate: 'testData', adapter: testDataAdapter }
     ])
 });
 

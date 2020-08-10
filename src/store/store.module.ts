@@ -7,8 +7,7 @@ import storage from 'redux-persist/lib/storage';
 
 import
 {
-  WsActions,
-	//Actions imports: PLEASE DON'T DELETE THIS PLACEHOLDER
+  WsActions
 } from './index';
 
 import rootReducer from './store.reducer';
@@ -16,8 +15,7 @@ import rootEpic from './epics';
 import rootSaga from './sagas';
 
 const ACTIONS = [
-  WsActions,
-	//Actions: PLEASE DON'T DELETE THIS PLACEHOLDER
+  WsActions
 ];
 
 const RESOLVERS = [

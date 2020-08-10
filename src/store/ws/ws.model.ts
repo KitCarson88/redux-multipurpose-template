@@ -5,7 +5,6 @@ import { createWsInitialState } from '@redux-multipurpose/core';
 import '../../extensions/dates.extension';
 
 import { TestDataDTO } from '../../entities/dto/testDataDTO';
-//Dto imports: PLEASE DON'T DELETE THIS PLACEHOLDER
 
 export const testDataAdapter = createEntityAdapter<TestDataDTO>({
     // Assume IDs are stored in a field other than `element.id` where element is one object of TestData
@@ -16,6 +15,5 @@ export const testDataAdapter = createEntityAdapter<TestDataDTO>({
 
 export const INITIAL_STATE_WEB_SERVICES = createWsInitialState([
 	'example',
-	{ 'testData': { data: testDataAdapter.getInitialState() }},
-    //Ws data: PLEASE DON'T DELETE THIS PLACEHOLDER
+    { 'testData': { data: testDataAdapter.getInitialState() }}
 ]);

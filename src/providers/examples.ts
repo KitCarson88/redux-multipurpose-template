@@ -10,8 +10,6 @@ import { ServiceLocator } from '../services/locator.service';
 })
 export class ExamplesProvider
 {
-    constructor() {}
-
     getExampleData()
     {
         let api: Api = ServiceLocator.injector.get(Api);
@@ -19,7 +17,7 @@ export class ExamplesProvider
         //Provide here your call to data retrieve, replacing following example empty promise
         return api.get('assets/mock-data/get-example-data.json').pipe(delay(2000), timeout(3000)).toPromise();
     }
-
+    
     getTestData()
     {
         let api: Api = ServiceLocator.injector.get(Api);
@@ -27,6 +25,4 @@ export class ExamplesProvider
         //Provide here your call to data retrieve, replacing following example empty promise
         return api.get('assets/mock-data/get-test-data.json').pipe(delay(2000), timeout(3000)).toPromise();
     }
-
-    //Provider calls: PLEASE DON'T DELETE THIS PLACEHOLDER
 }
