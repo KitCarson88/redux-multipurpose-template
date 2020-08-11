@@ -1,11 +1,13 @@
 import { createStoredReducer, createSecureStoredReducer } from '@redux-multipurpose/core';
 
 import { wsReducer } from './ws/ws.slice';
+import { splashReducer } from './splash/splash.slice';
 
 export function rootReducer(storage)
 {
   return {
-    ws: wsReducer
+    ws: wsReducer,
+		splash: splashReducer
   };
 }
 

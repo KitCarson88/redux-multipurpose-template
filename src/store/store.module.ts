@@ -7,7 +7,8 @@ import storage from 'redux-persist/lib/storage';
 
 import
 {
-  WsActions
+  WsActions,
+	SplashActions
 } from './index';
 
 import rootReducer from './store.reducer';
@@ -15,7 +16,8 @@ import rootEpic from './epics';
 import rootSaga from './sagas';
 
 const ACTIONS = [
-  WsActions
+  WsActions,
+	SplashActions
 ];
 
 const RESOLVERS = [
@@ -41,7 +43,7 @@ export class StoreModule
       reducers: rootReducer(storage),
       devTools: true,
       middlewares,
-      epics: rootEpic,
+      epics: rootEpic(),
       sagas: rootSaga,
       enablePersistence: true,
       router: configureRouterReducer('router', this.router),

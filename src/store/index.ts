@@ -4,3 +4,4 @@ export {
 	testDataObject, testDataArray, testDataCount,
 	WsActions
 } from './ws/ws.selectors-dispatchers';
+export { SplashActions } from './splash/splash.selectors-dispatchers';

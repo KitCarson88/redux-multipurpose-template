@@ -32,7 +32,7 @@ const wsSlice = createSlice({
         }
     },
     extraReducers: prepareThunkActionReducers([
-        { thunk: getExampleDataThunk, substate: 'example', adapter: null },
+		{ thunk: getExampleDataThunk, substate: 'example', adapter: null },
         { thunk: getTestDataThunk, substate: 'testData', adapter: testDataAdapter }
     ])
 });
