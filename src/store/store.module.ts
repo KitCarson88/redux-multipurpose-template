@@ -46,6 +46,16 @@ export class StoreModule
       epics: rootEpic(),
       sagas: rootSaga,
       enablePersistence: true,
+      enableResponsiveness: {
+        breakpoints: {
+          extraSmall: 320,
+          small: 480,
+          medium: 768,
+          large: 1280,
+          extraLarge: 1920,
+          infinity: "infinity"
+        }
+      },
       router: configureRouterReducer('router', this.router),
       logLevel: 'log'
     });
