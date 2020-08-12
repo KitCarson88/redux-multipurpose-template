@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -13,20 +13,16 @@ import { SplashActions } from '../../store/splash/splash.selectors-dispatchers';
   templateUrl: './splash.component.html',
   styleUrls: ['./splash.component.scss'],
 })
-export class SplashComponent implements OnInit, AfterViewInit, OnDestroy
+export class SplashComponent implements AfterViewInit
 {
   @select(["splash"])
   splashState$: Observable<'active' | 'fadeIn' | 'fadeOut' | 'inactive'>;
 
   constructor(private splashScreen: SplashScreen, private splashActions: SplashActions) {}
 
-  ngOnInit() {}
-
   ngAfterViewInit()
   {
     this.splashScreen.hide();
     this.splashActions.hide();
   }
-
-  ngOnDestroy() {}
 }

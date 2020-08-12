@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnInit
+export class AppComponent
 {
   @select(["splash"])
   splashState$: Observable<string>;
@@ -25,8 +25,6 @@ export class AppComponent implements OnInit
   ) {
     this.initializeApp();
   }
-
-  ngOnInit() {}
 
   initializeApp() {
     this.platform.ready().then(() => {
