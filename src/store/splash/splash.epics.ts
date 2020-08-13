@@ -15,6 +15,7 @@ export const createSplashAnimation: Epic<any, any, any> =
             of((setState('fadeIn'))).pipe(delay(constants.SPLASH_ANIMATION_FADE_IN_DELAY)),
             of((setState('animation'))).pipe(delay(constants.SPLASH_ANIMATION_DELAY)),
             of((setState('fadeOut'))).pipe(delay(constants.SPLASH_ANIMATION_FADE_OUT_DELAY)),
-            of((setState('inactive'))).pipe(delay(800))
+            of((setState('inactive'))).pipe(delay(800)),
+            of((setState(null)))
         ))
     );
