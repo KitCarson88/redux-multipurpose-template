@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { map, first } from 'rxjs/operators';
+
 import { select } from '@redux-multipurpose/core';
 
-import { WsActions, testDataArray } from '../../store';
+import { 
+  testDataArray, 
+  storedExamplesMap,
+  WsActions, 
+  StorageActions
+} from '../../store';
 
 import { ExampleDTO } from '../../entities/dto/exampleDTO';
 import { TestDataDTO } from '../../entities/dto/testDataDTO';
@@ -24,6 +31,12 @@ export class HomePage implements OnInit
   @select(["ws", "example", "error"])
   examplesError$: Observable<any>;
 
+  @select(["storage", "favouriteExamples"])
+  exampleFavouritesArray$: Observable<ExampleDTO[]>;
+
+  @select(storedExamplesMap)
+  exampleFavouritesMap$: Observable<{[id: number]: ExampleDTO}>;
+
 
   @select(testDataArray)
   testData$: Observable<TestDataDTO[]>;
@@ -34,7 +47,7 @@ export class HomePage implements OnInit
   @select(["ws", "testData", "error"])
   testDataError$: Observable<any>;
 
-  constructor(private wsActions: WsActions) {}
+  constructor(private wsActions: WsActions, private storage: StorageActions) {}
 
   ngOnInit()
   {
@@ -44,5 +57,22 @@ export class HomePage implements OnInit
   getTests()
   {
     this.wsActions.getTestData();
+  }
+
+  isExampleFavourite(id: number): Observable<boolean>
+  {
+    return this.exampleFavouritesMap$.pipe(map(map => map != null && map != undefined && map[id] != null && map[id] != undefined));
+  }
+
+  triggerExampleFavourite(event, example: ExampleDTO)
+  {
+    event.stopPropagation();
+    this.isExampleFavourite(example.id).pipe(first())
+      .subscribe(isFavourite => {
+        if (isFavourite)
+          this.storage.removeExampleFavourite(example.id);
+        else
+          this.storage.addExampleFavourite(example);
+      });
   }
 }

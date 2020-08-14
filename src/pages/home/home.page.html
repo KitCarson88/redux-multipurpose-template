@@ -20,6 +20,14 @@
               <div>{{example.subtitle}}</div>
               <div>{{example.date | date: 'dd/MM/yyyy'}}</div>
             </ion-label>
+            <ion-button class="fillButton" fill="clear" slot="end" (click)="triggerExampleFavourite($event, example)">
+              <ng-container *ngIf="isExampleFavourite(example.id) | async; else notFavourite">
+                <ion-icon name="star"></ion-icon>
+              </ng-container>
+              <ng-template #notFavourite>
+                <ion-icon name="star-outline"></ion-icon>
+              </ng-template>
+            </ion-button>
           </ion-item>
         </ion-list>
 
@@ -28,6 +36,19 @@
         </ion-button>
       </ng-template>
     </ng-template>
+  </div>
+
+  <div class="infoContainer" *ngIf="(exampleFavouritesArray$ | async) as favourites">
+    <h3>Examples favourites</h3>
+    <ion-list class="template-list" *ngIf="favourites.length">
+      <ion-item *ngFor="let favourite of favourites">
+        <ion-label>
+          <div class="exampleInfo f-20 f-weight-600">{{favourite.title}}</div>
+          <div class="exampleInfo f-20">{{favourite.subtitle}}</div>
+          <div class="exampleInfo f-18">{{favourite.date | date: 'dd/MM/yyyy'}}</div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 
   <div class="infoContainer">

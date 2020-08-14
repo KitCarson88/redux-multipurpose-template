@@ -4,3 +4,4 @@ export {
 	testDataObject, testDataArray, testDataCount,
 	WsActions
 } from './ws/ws.selectors-dispatchers';
+export { storedExamplesMap, StorageActions } from './storage/storage.selectors-dispatchers';
