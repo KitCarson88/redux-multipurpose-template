@@ -31,6 +31,16 @@ export const testDataCount =
         [testData],
         (items) => items? testDataSelectors.selectTotal(items) : null
     );
+export const testDataIds = 
+    createSelector(
+        [testData],
+        (items) => items? testDataSelectors.selectIds(items) : null
+    );
+export const testDataSelectById = (id) =>
+    createSelector(
+        [testData],
+        (items) => items? testDataSelectors.selectById(items, id) : null
+    );
 
 @Injectable()
 export class WsActions

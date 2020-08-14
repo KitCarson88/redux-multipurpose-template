@@ -5,3 +5,4 @@ export {
 	WsActions
 } from './ws/ws.selectors-dispatchers';
 export { storedExamplesMap, StorageActions } from './storage/storage.selectors-dispatchers';
+export { storedTestsMap, SecureStorageActions } from './secure-storage/secure-storage.selectors-dispatchers';

@@ -8,8 +8,10 @@ import { select } from '@redux-multipurpose/core';
 import { 
   testDataArray, 
   storedExamplesMap,
+  storedTestsMap,
   WsActions, 
-  StorageActions
+  StorageActions,
+  SecureStorageActions
 } from '../../store';
 
 import { ExampleDTO } from '../../entities/dto/exampleDTO';
@@ -47,7 +49,17 @@ export class HomePage implements OnInit
   @select(["ws", "testData", "error"])
   testDataError$: Observable<any>;
 
-  constructor(private wsActions: WsActions, private storage: StorageActions) {}
+  @select(["secureStorage", "infos", "favouriteTests"])
+  testFavouritesArray$: Observable<TestDataDTO[]>;
+
+  @select(storedTestsMap)
+  testFavouritesMap$: Observable<{[id: number]: TestDataDTO}>;
+
+  constructor(
+    private wsActions: WsActions,
+    private storage: StorageActions,
+    private secureStorage: SecureStorageActions
+  ) {}
 
   ngOnInit()
   {
@@ -73,6 +85,23 @@ export class HomePage implements OnInit
           this.storage.removeExampleFavourite(example.id);
         else
           this.storage.addExampleFavourite(example);
+      });
+  }
+
+  isTestFavourite(id: number): Observable<boolean>
+  {
+    return this.testFavouritesMap$.pipe(map(map => map != null && map != undefined && map[id] != null && map[id] != undefined));
+  }
+
+  triggerTestFavourite(event, test: TestDataDTO)
+  {
+    event.stopPropagation();
+    this.isTestFavourite(test.id).pipe(first())
+      .subscribe(isFavourite => {
+        if (isFavourite)
+          this.secureStorage.removeTestFavourite(test.id);
+        else
+          this.secureStorage.addTestFavourite(test);
       });
   }
 }

@@ -2,12 +2,14 @@ import { createStoredReducer, createSecureStoredReducer } from '@redux-multipurp
 
 import { wsReducer } from './ws/ws.slice';
 import { storageReducer } from './storage/storage.slice';
+import { secureStorageReducer } from './secure-storage/secure-storage.slice';
 
 export function rootReducer(storage)
 {
   return {
     ws: wsReducer,
-		storage: storageReducer
+		storage: storageReducer,
+		secureStorage: secureStorageReducer
   };
 }
 

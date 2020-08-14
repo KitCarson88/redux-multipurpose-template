@@ -8,6 +8,7 @@
 
 <ion-content>
   <div class="infoContainer">
+    <h3>Examples</h3>
     <ion-spinner *ngIf="examplesLoading$ | async; else examplesCallEnded"></ion-spinner>
     <ng-template #examplesCallEnded>
       <ion-label *ngIf="examplesError$ | async; else exampleData">An error occured during example data retrieve</ion-label>
@@ -21,10 +22,10 @@
               <div>{{example.date | date: 'dd/MM/yyyy'}}</div>
             </ion-label>
             <ion-button class="fillButton" fill="clear" slot="end" (click)="triggerExampleFavourite($event, example)">
-              <ng-container *ngIf="isExampleFavourite(example.id) | async; else notFavourite">
+              <ng-container *ngIf="isExampleFavourite(example.id) | async; else notExampleFavourite">
                 <ion-icon name="star"></ion-icon>
               </ng-container>
-              <ng-template #notFavourite>
+              <ng-template #notExampleFavourite>
                 <ion-icon name="star-outline"></ion-icon>
               </ng-template>
             </ion-button>
@@ -52,20 +53,42 @@
   </div>
 
   <div class="infoContainer">
+    <h3>Tests</h3>
+
     <ion-spinner *ngIf="testDataLoading$ | async; else testCallEnded"></ion-spinner>
     <ng-template #testCallEnded>
-      <ion-label *ngIf="testDataError$ | async; else testData">An error occured during test data retrieve</ion-label>
+      <ion-label *ngIf="testDataError$ | async">An error occured during test data retrieve</ion-label>
   
-      <ng-template #testData>
+      <ng-container *ngIf="(testData$ | async) as testData">
         <ion-list>
-          <ion-item *ngFor="let test of testData$ | async">
+          <ion-item *ngFor="let test of testData">
             <ion-label>
               <div>{{test.title}}</div>
               <div>{{test.date | date: 'dd/MM/yyyy'}}</div>
             </ion-label>
+            <ion-button class="fillButton" fill="clear" slot="end" (click)="triggerTestFavourite($event, test)">
+              <ng-container *ngIf="isTestFavourite(test.id) | async; else notTestFavourite">
+                <ion-icon name="star"></ion-icon>
+              </ng-container>
+              <ng-template #notTestFavourite>
+                <ion-icon name="star-outline"></ion-icon>
+              </ng-template>
+            </ion-button>
           </ion-item>
         </ion-list>
-      </ng-template>
+      </ng-container>
     </ng-template>
+  </div>
+
+  <div class="infoContainer" *ngIf="(testFavouritesArray$ | async) as favourites">
+    <h3>Tests favourites</h3>
+    <ion-list class="template-list" *ngIf="favourites.length">
+      <ion-item *ngFor="let favourite of favourites">
+        <ion-label>
+          <div class="exampleInfo f-20 f-weight-600">{{favourite.title}}</div>
+          <div class="exampleInfo f-18">{{favourite.date | date: 'dd/MM/yyyy'}}</div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

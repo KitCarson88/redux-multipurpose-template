@@ -8,7 +8,8 @@ import storage from 'redux-persist/lib/storage';
 import
 {
   WsActions,
-	StorageActions
+	StorageActions,
+	SecureStorageActions
 } from './index';
 
 import rootReducer from './store.reducer';
@@ -17,7 +18,8 @@ import rootSaga from './sagas';
 
 const ACTIONS = [
   WsActions,
-	StorageActions
+	StorageActions,
+	SecureStorageActions
 ];
 
 const RESOLVERS = [
