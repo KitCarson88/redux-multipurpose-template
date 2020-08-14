@@ -1,0 +1,18 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Test</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="(test$ | async) as test">
+    <h2>{{test.title}}</h2>
+
+    <p>
+      {{test.date}}
+    </p>
+  </ng-container>
+</ion-content>

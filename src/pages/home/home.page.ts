@@ -16,6 +16,7 @@ import {
 
 import { ExampleDTO } from '../../entities/dto/exampleDTO';
 import { TestDataDTO } from '../../entities/dto/testDataDTO';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -56,6 +57,7 @@ export class HomePage implements OnInit
   testFavouritesMap$: Observable<{[id: number]: TestDataDTO}>;
 
   constructor(
+    private navCtrl: NavController,
     private wsActions: WsActions,
     private storage: StorageActions,
     private secureStorage: SecureStorageActions
@@ -103,5 +105,10 @@ export class HomePage implements OnInit
         else
           this.secureStorage.addTestFavourite(test);
       });
+  }
+
+  openTestDetail(test: TestDataDTO)
+  {
+    this.navCtrl.navigateForward('/test-detail/' + test.id);
   }
 }
