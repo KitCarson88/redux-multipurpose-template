@@ -4,12 +4,16 @@ import { wsReducer } from './ws/ws.slice';
 import { storageReducer } from './storage/storage.slice';
 import { secureStorageReducer } from './secure-storage/secure-storage.slice';
 
-export function rootReducer(storage)
+export function rootReducer(storageSystem)
 {
-  return {
+  const secureStorageSecurePersistedReducer = createSecureStoredReducer('secureStorage', '0xjw4y5xhcmlsk8lc5bo27', storageSystem, secureStorageReducer);
+
+	const storagePersistedReducer = createStoredReducer('storage', storageSystem, storageReducer);
+
+	return {
     ws: wsReducer,
-		storage: storageReducer,
-		secureStorage: secureStorageReducer
+		storage: storagePersistedReducer,
+		secureStorage: secureStorageSecurePersistedReducer
   };
 }
 
