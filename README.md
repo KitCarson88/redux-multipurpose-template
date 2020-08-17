@@ -16,7 +16,7 @@ The project integrates a [@reduxjs/toolkit](https://www.npmjs.com/package/@redux
 - persistence ([redux-persist](https://www.npmjs.com/package/redux-persist) package)
 - responsiveness track ([redux-responsive](https://www.npmjs.com/package/redux-responsive) package)
 - logger ([redux-logger](https://www.npmjs.com/package/redux-logger) package for development purpose)
-- routing track and management ([@redux-multipurpose/angular-router] package)
+- routing track and management ([@redux-multipurpose/angular-router](https://github.com/KitCarson88/redux-multipurpose-toolkit/tree/master/projects/redux-multipurpose/angular-router) package)
 
 All these features can be enabled or not during store creation by interactive cli of @redux-multipurpose/angular-cli package. During files creation, these are configured or not on @redux-multipurpose/core package providing related arguments to `initializeStore` call.
 
