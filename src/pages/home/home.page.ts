@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
 
-import { select } from '@redux-multipurpose/core';
+import { store, select } from '@redux-multipurpose/core';
 
 import { 
   testDataArray, 
@@ -110,5 +110,10 @@ export class HomePage implements OnInit
   openTestDetail(test: TestDataDTO)
   {
     this.navCtrl.navigateForward('/test-detail/' + test.id);
+  }
+
+  reset()
+  {
+    store.dispatch({ type: 'resetAll' });
   }
 }
