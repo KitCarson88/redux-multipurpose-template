@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { ReducerInjector, ReducerDeallocator, store, select } from '@redux-multipurpose/core';
+import { goToUrl } from '@redux-multipurpose/angular-router';
 
 import { currentTestReducer, addTest } from '../../store/current-test/current-test.slice';
 import { testDataSelectById } from '../../store/ws/ws.selectors-dispatchers';
@@ -42,4 +43,9 @@ export class TestDetailPage implements OnInit, OnDestroy
   }
 
   ngOnDestroy() {}
+
+  returnToHomeWithRedux()
+  {
+    store.dispatch(goToUrl("/home"));
+  }
 }
