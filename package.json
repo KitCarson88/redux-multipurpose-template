@@ -53,5 +53,5 @@
     "tslint": "^6.1.2",
     "typescript": "~3.9.7"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic template with @redux-multipurpose suite integration"
 }
