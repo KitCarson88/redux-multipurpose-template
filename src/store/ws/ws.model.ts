@@ -15,5 +15,7 @@ export const testDataAdapter = createEntityAdapter<TestDataDTO>({
 
 export const INITIAL_STATE_WEB_SERVICES = createWsInitialState([
 	'example',
-    { 'testData': { data: testDataAdapter.getInitialState() }}
+    { 'testData': { data: testDataAdapter.getInitialState({ available: null }) }}
 ]);
+
+//testData substate 'available' flag is triggered from core to track initial null data state (instead of empty initial data provided from adapter)

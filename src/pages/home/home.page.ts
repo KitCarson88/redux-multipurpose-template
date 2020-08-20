@@ -44,6 +44,9 @@ export class HomePage implements OnInit
   @select(testDataArray)
   testData$: Observable<TestDataDTO[]>;
 
+  @select(["ws", "testData", "data", "available"])
+  testDataAvailable$: Observable<null | boolean>;
+
   @select(["ws", "testData", "loading"])
   testDataLoading$: Observable<boolean>;
 
