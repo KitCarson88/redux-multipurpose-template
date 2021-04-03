@@ -47,12 +47,12 @@ export class WsActions
 {
     @dispatch()
     getExampleData = () => {
-        return getExampleDataThunk();
+        return getExampleDataThunk(null);
     };
     
     @dispatch()
     getTestData = () => {
-        return getTestDataThunk();
+        return getTestDataThunk(null);
     };
     
 }

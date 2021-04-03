@@ -4,7 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { Observable } from 'rxjs';
 
-import { store, select, ReducerDeallocator } from '@redux-multipurpose/core';
+import { store, select } from '@redux-multipurpose/core';
 import { addEpic, removeEpic } from '../../store/epics';
 import { createSplashAnimation } from '../../store/splash/splash.epics';
 import { hide } from '../../store/splash/splash.slice';
@@ -15,7 +15,6 @@ import { hide } from '../../store/splash/splash.slice';
   templateUrl: './splash.component.html',
   styleUrls: ['./splash.component.scss'],
 })
-@ReducerDeallocator(['splash'])
 export class SplashComponent implements OnInit, AfterViewInit, OnDestroy
 {
   @select(["splash"])
@@ -37,5 +36,6 @@ export class SplashComponent implements OnInit, AfterViewInit, OnDestroy
   ngOnDestroy()
   {
     store.replaceEpics(removeEpic('createSplashAnimation'));
+    store.removeReducer("splash");
   }
 }

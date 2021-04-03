@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 
 import { Observable } from 'rxjs';
 
-import { select, ReducerInjector } from '@redux-multipurpose/core';
+import { select, store } from '@redux-multipurpose/core';
 
 import { splashReducer } from '../store/splash/splash.slice';
 
@@ -15,10 +15,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-@ReducerInjector([{
-	key: 'splash',
-	reducer: splashReducer
-}])
 export class AppComponent implements OnInit
 {
   @select(["splash"])
@@ -36,6 +32,8 @@ export class AppComponent implements OnInit
   }
 
   initializeApp() {
+    store.addReducer("splash", splashReducer);
+
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();

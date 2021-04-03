@@ -13,7 +13,7 @@ function* resetAllData()
         yield put(resetStorage());
         yield put(resetSecureStorage());
         yield put(resetWsData());
-        yield call(store.dispatch, getExampleDataThunk());
+        yield call(store.dispatch, getExampleDataThunk(null));
     });
 }
 

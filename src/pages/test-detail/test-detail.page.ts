@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { ReducerInjector, ReducerDeallocator, store, select } from '@redux-multipurpose/core';
+import { store, select } from '@redux-multipurpose/core';
 import { goToUrl } from '@redux-multipurpose/angular-router';
 
 import { currentTestReducer, addTest } from '../../store/current-test/current-test.slice';
@@ -16,11 +16,6 @@ import { TestDataDTO } from '../../entities/dto/testDataDTO';
   templateUrl: './test-detail.page.html',
   styleUrls: ['./test-detail.page.scss'],
 })
-@ReducerInjector([{
-	key: 'currentTest',
-	reducer: currentTestReducer
-}])
-@ReducerDeallocator(['currentTest'])
 export class TestDetailPage implements OnInit, OnDestroy
 {
   @select(["currentTest", "test"])
@@ -30,6 +25,8 @@ export class TestDetailPage implements OnInit, OnDestroy
 
   ngOnInit()
   {
+    store.addReducer("currentTest", currentTestReducer);
+
     this.route.params.pipe(first())
       .subscribe(params =>
       {
@@ -42,7 +39,9 @@ export class TestDetailPage implements OnInit, OnDestroy
       });
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    store.removeReducer("currentTest");
+  }
 
   returnToHomeWithRedux()
   {
